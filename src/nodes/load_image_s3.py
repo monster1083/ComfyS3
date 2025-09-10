@@ -25,8 +25,13 @@ class LoadImageS3:
     
     def load_image(self, image):
         s3_path = os.path.join(os.getenv("S3_INPUT_DIR"), image)
+
+        print('s3_path', s3_path)
+
         image_path = S3_INSTANCE.download_file(s3_path=s3_path, local_path=f"input/{image}")
-        
+
+        print('image_path', image_path)
+
         img = Image.open(image_path)
         output_images = []
         output_masks = []
